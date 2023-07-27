@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 cd docker
 . ./docker-setup.sh
 cd ..
