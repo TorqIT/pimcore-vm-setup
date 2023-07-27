@@ -18,7 +18,6 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 echo Finished installing Docker Engine
 
 echo Installing Docker prune job...
-sudo chmod +x docker-prune
 sudo cp docker-prune /etc/cron.daily
 echo Finished installing prune job
 

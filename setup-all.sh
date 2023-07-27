@@ -5,7 +5,7 @@ cd docker
 cd ..
 
 cd nginx
-. ./nginx/nginx-setup.sh
+. ./nginx-setup.sh
 cd ..
 
 # TODO self hosted runner?
