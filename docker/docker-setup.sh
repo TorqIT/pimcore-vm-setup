@@ -23,5 +23,7 @@ echo Finished installing prune job
 
 echo Adding current user to the Docker group...
 sudo usermod -aG docker $USER
+# Log into the group without forcing the user to logout/login
+newgrp docker
 
 echo Finished Docker setup
