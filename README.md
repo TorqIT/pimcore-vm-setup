@@ -6,6 +6,9 @@ The `docker` directory contains a script that will install Docker, add the curre
 ## NGINX setup
 The `nginx` directory contains a setup for a Dockerized NGINX webserver. Prior to setting this up, ensure that any other webservers on the VM are disabled - for example, to disable an existing NGINX installation, run `sudo systemctl disable nginx`. It may then be prudent to copy/move the contents of `nginx` into `/etc/nginx`. Navigate into the directory and run `docker compose up -d` to setup the webserver.
 
+### Certificates
+The `volumes` section of the `docker-compose.yml` file contains a mapping of the `certs` folder into the `/etc/nginx/certs` folder inside the container. HTTPS certificate files can be placed here, and will automatically be associated with the domain(s) of your Pimcore app. If your certificate files are kept in a specific directory (or multiple directories) elsewhere on the VM, this mapping can be modified.
+ 
 ## GitHub Actions Runner
 The `github-actions-runner` directory contains two scripts for setting up this VM as a self-hosted GitHub Actions Runner. Follow these steps:
 1. Navigate into the directory.
@@ -15,4 +18,4 @@ The `github-actions-runner` directory contains two scripts for setting up this V
 5. Run `sudo runuser -u github -- ./runner-setup.sh --repo https://github.com/<your-org>/<your-repo> --version <GitHub Actions Runner latest release number> --token <your copied token>` to set up the VM as a self-hosted runner. By default, the script will install the service into the home directory of the `github` user created in step 2.
 
 ## Pimcore
-The `pimcore` directory contains a script for finalizing the setting up of the VM for hosting Pimcore. It will create a `pimcore` user with 
+The `pimcore` directory contains a script for finalizing the setting up of the VM for hosting Pimcore. It will create a `pimcore` user with a given UID/GID, and will create some external networks which are necessary in order to facilitate blue-green (no downtime) deployments via Docker Compose.
