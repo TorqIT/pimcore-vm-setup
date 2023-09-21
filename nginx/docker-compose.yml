@@ -14,8 +14,6 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./custom.conf:/etc/nginx/conf.d/custom.conf:ro
       - ./certs:/etc/nginx/certs
-      #- /etc/pki/tls/certs/_.galco.com.chained.crt:/etc/nginx/certs/galco.com.crt
-      #- /etc/pki/tls/private/_.galco.com.key:/etc/nginx/certs/galco.com.key
 
 volumes:
   conf:
