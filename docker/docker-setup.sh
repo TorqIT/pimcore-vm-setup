@@ -26,8 +26,4 @@ echo Finished installing prune job
 echo Adding current user to the Docker group...
 sudo usermod -aG docker $USER
 
-echo Creating external Docker networks...
-sudo docker network create database_network
-sudo docker network create redis_network
-
 echo Finished Docker setup
