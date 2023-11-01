@@ -15,7 +15,7 @@ The `github-actions-runner` directory contains two scripts for setting up this V
 2. Run `./runner-user-setup.sh` to set up a dedicated Linux user under which the Runner service will run.
 3. In a browser, navigate to https://github.com/<your-org>/<your-repo>/settings/actions/runners, click "New self-hosted runner", select "Linux", and copy the "token" value in the "Configure" section. 
 4. Navigate to https://github.com/actions/runner/releases and note the latest release number
-5. Run `sudo runuser -u github -- ./runner-setup.sh --repo https://github.com/<your-org>/<your-repo> --version <GitHub Actions Runner latest release number> --token <your copied token>` to set up the VM as a self-hosted runner. By default, the script will install the service into the home directory of the `github` user created in step 2.
+5. Run `./runner-setup.sh --repo https://github.com/<your-org>/<your-repo> --version <GitHub Actions Runner latest release number> --token <your copied token> --user github` to set up the VM as a self-hosted runner. By default, the script will install the service into the home directory of the `github` user created in step 2.
 
 ## Pimcore
 The `pimcore` directory contains a script for finalizing the setting up of the VM for hosting Pimcore. It will create a `pimcore` user with a given UID/GID, and will create some external networks which are necessary in order to facilitate blue-green (no downtime) deployments via Docker Compose.
