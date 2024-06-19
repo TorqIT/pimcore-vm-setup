@@ -1,5 +1,13 @@
 This repository contains several scripts for provisioning a Linux virtual machine to host a Pimcore solution.
 
+## Get the repo
+The easiest way to get this repository onto your VM is to simply download it - run the following:
+```
+wget https://github.com/TorqIT/pimcore-vm-setup/archive/refs/heads/main.zip -O pimcore-vm-setup.zip;
+sudo apt update && sudo apt install unzip -y;
+unzip pimcore-vm-setup.zip -d .;
+```
+
 ## Docker setup
 The `docker` directory contains a script that will install Docker, add the current user to the Docker group, and install a daily cron job that will prune unused Docker images. Navigate to this directory and run `./docker-setup.sh`. Note that after adding yourself to the Docker group, you will need to refresh your shell session (e.g. logout and log back in).
 
@@ -15,7 +23,7 @@ The `github-actions-runner` directory contains two scripts for setting up this V
 2. Run `./runner-user-setup.sh` to set up a dedicated Linux user under which the Runner service will run.
 3. In a browser, navigate to https://github.com/<your-org>/<your-repo>/settings/actions/runners, click "New self-hosted runner", select "Linux", and copy the "token" value in the "Configure" section. 
 4. Navigate to https://github.com/actions/runner/releases and note the latest release number
-5. Run `./runner-setup.sh --repo https://github.com/<your-org>/<your-repo> --version <GitHub Actions Runner latest release number> --token <your copied token> --user github` to set up the VM as a self-hosted runner. By default, the script will install the service into the home directory of the `github` user created in step 2.
+5. Run `sudo ./runner-setup.sh --repo https://github.com/<your-org>/<your-repo> --version <GitHub Actions Runner latest release number> --token <your copied token> --user github` to set up the VM as a self-hosted runner. By default, the script will install the service into the home directory of the `github` user created in step 2.
 
 ## Pimcore
-The `pimcore` directory contains a script for finalizing the setting up of the VM for hosting Pimcore. It will create a `pimcore` user with a given UID/GID, and will create some external networks which are necessary in order to facilitate blue-green (no downtime) deployments via Docker Compose.
+The `pimcore` directory contains a script for finalizing the setting up of the VM for hosting Pimcore. It will create some external networks which are necessary in order to facilitate blue-green (no downtime) deployments via Docker Compose.
